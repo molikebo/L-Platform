@@ -3,56 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>L Platform | المنصة</title>
+    <title>L Platform | المنصة - بوابة الفن والتريند</title>
     <style>
-        :root { 
-            /* --- اختر اللون هنا --- */
-            
-            /* الخيار 1: الأحمر (المفضل لك) */
-            --accent: #e63946; 
-            
-            /* الخيار 2: الأزرق السماوي (جربه بتغيير الكود لـ #00b4d8) */
-            /* --accent: #00b4d8; */
-
-            --bg: #0f1014; 
-            --card: #1a1c23; 
-            --text: #f1f1f1;
-        }
-        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); margin: 0; }
-        header { 
-            display: flex; justify-content: space-between; align-items: center; 
-            padding: 15px 8%; background: #000; border-bottom: 3px solid var(--accent);
-        }
-        .logo { font-size: 26px; font-weight: 800; letter-spacing: 2px; }
+        :root { --accent: #00b4d8; --bg: #0a0b10; --card: #161b22; --text: #f0f6fc; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--bg); color: var(--text); margin: 0; }
+        header { background: #000; padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--accent); position: sticky; top: 0; z-index: 100; }
+        .logo { font-size: 28px; font-weight: 900; letter-spacing: 1px; }
         .logo span { color: var(--accent); }
+        nav a { color: #8b949e; text-decoration: none; margin-right: 20px; font-weight: bold; transition: 0.3s; }
+        nav a:hover { color: var(--accent); }
         
-        .hero { 
-            background: linear-gradient(45deg, #000, #1a1a1a); 
-            padding: 80px 8%; text-align: center; border-bottom: 1px solid #333;
-        }
-        .hero h1 { font-size: 50px; margin: 0; }
-        .hero span { color: var(--accent); }
-        .btn { 
-            display: inline-block; margin-top: 20px; padding: 12px 35px; 
-            background: var(--accent); color: white; text-decoration: none; 
-            border-radius: 5px; font-weight: bold; transition: 0.3s;
-        }
-        .btn:hover { transform: scale(1.05); box-shadow: 0 0 20px var(--accent); }
+        .hero { padding: 60px 5%; text-align: center; background: radial-gradient(circle at center, #1a1d23 0%, #0a0b10 100%); border-bottom: 1px solid #30363d; }
+        .hero h1 { font-size: 48px; margin-bottom: 10px; }
+        .hero p { color: #8b949e; font-size: 20px; }
 
-        .container { display: grid; grid-template-columns: 3fr 1fr; gap: 30px; padding: 40px 8%; }
-        .card { 
-            background: var(--card); border-radius: 10px; overflow: hidden; 
-            border-bottom: 4px solid #333; transition: 0.3s;
-        }
-        .card:hover { border-bottom-color: var(--accent); }
-        .card-img { width: 100%; height: 200px; background: #333; } /* مكان الصورة */
-        .card-content { padding: 20px; }
-        .card-content h3 { margin: 0; font-size: 22px; }
+        .container { display: grid; grid-template-columns: 3fr 1fr; gap: 30px; padding: 40px 5%; }
         
-        .sidebar-box { 
-            background: var(--card); padding: 20px; border-radius: 10px; 
-            border: 1px solid var(--accent); text-align: center;
-        }
+        .news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+        .card { background: var(--card); border-radius: 12px; border: 1px solid #30363d; overflow: hidden; transition: 0.3s; }
+        .card:hover { transform: translateY(-5px); border-color: var(--accent); }
+        .card-img { width: 100%; height: 180px; background: #21262d; display: flex; align-items: center; justify-content: center; font-size: 50px; }
+        .card-body { padding: 20px; }
+        .card-tag { color: var(--accent); font-size: 12px; font-weight: bold; text-transform: uppercase; }
+        .card h3 { margin: 10px 0; font-size: 20px; }
+        .card a { color: var(--accent); text-decoration: none; font-weight: bold; font-size: 14px; }
+
+        .sidebar { display: flex; flex-direction: column; gap: 20px; }
+        .ad-box { background: var(--card); border: 1px dashed var(--accent); padding: 30px; border-radius: 12px; text-align: center; }
+        .ad-box h4 { margin: 0 0 10px; color: var(--accent); }
+        .btn-ad { background: var(--accent); color: #000; border: none; padding: 10px; width: 100%; border-radius: 6px; font-weight: bold; cursor: pointer; }
+
+        @media (max-width: 768px) { .container { grid-template-columns: 1fr; } .hero h1 { font-size: 32px; } }
     </style>
 </head>
 <body>
@@ -60,41 +41,48 @@
 <header>
     <div class="logo">L <span>PLATFORM</span></div>
     <nav>
-        <button style="background:none; border:1px solid var(--accent); color:var(--accent); padding:5px 15px; cursor:pointer;" onclick="changeColor('#00b4d8')">أزرق سماوي</button>
-        <button style="background:none; border:1px solid var(--accent); color:var(--accent); padding:5px 15px; cursor:pointer;" onclick="changeColor('#e63946')">أحمر ملكي</button>
+        <a href="index.html">الرئيسية</a>
+        <a href="#">التريند</a>
+        <a href="#">أعلن معنا</a>
     </nav>
 </header>
 
 <section class="hero">
     <h1>المنصة <span>L</span></h1>
-    <p>بوابتك لنشر أعمالك الفنية وتصدر التريند</p>
-    <a href="#" class="btn">ابدأ الآن</a>
+    <p>وجهتكم الأولى لأخبار النجوم وأقوى التريندات الفنية</p>
 </section>
 
 <div class="container">
-    <div class="main-content">
-        <div class="card">
-            <div class="card-img"></div>
-            <div class="card-content">
-                <h3>عنوان الخبر يظهر هنا بهذا التنسيق</h3>
-                <p style="color: #888;">تفاصيل الخبر الفني المثير الذي سيكتبه لك Gemini...</p>
+    <main class="news-grid">
+        <article class="card">
+            <div class="card-img">🏆</div>
+            <div class="card-body">
+                <span class="card-tag">#تريند_السعودية</span>
+                <h3>ليلة الأساطير.. تغطية حفل Joy Awards 2025</h3>
+                <p style="color: #8b949e; font-size: 14px;">شاهد أهم اللقطات وقائمة الفائزين في أضخم حفل عربي بالرياض...</p>
+                <a href="posts/joy-awards-2025.html">اقرأ التفاصيل ←</a>
             </div>
-        </div>
-    </div>
+        </article>
 
-    <aside>
-        <div class="sidebar-box">
-            <h4 style="color: var(--accent);">منصة الإعلانات</h4>
-            <p>انشر عملك الفني هنا</p>
+        <article class="card">
+            <div class="card-img">⭐</div>
+            <div class="card-body">
+                <span class="card-tag">#نجمة_الجيل</span>
+                <h3>آية سماحة تخطف الأنظار بجلسة تصوير جديدة</h3>
+                <p style="color: #8b949e; font-size: 14px;">تصدرت الفنانة آية سماحة محركات البحث بعد ظهورها الأخير بإطلالة عصرية...</p>
+                <a href="posts/aya-samaha.html">مشاهدة الصور ←</a>
+            </div>
+        </article>
+    </main>
+
+    <aside class="sidebar">
+        <div class="ad-box">
+            <h4>أعلن هنا</h4>
+            <p style="font-size: 13px; color: #8b949e;">روّج لعملك الفني أو شركتك في منصة L</p>
+            <button class="btn-ad">اطلب إعلانك الآن</button>
         </div>
     </aside>
 </div>
-
-<script>
-    function changeColor(color) {
-        document.documentElement.style.setProperty('--accent', color);
-    }
-</script>
 
 </body>
 </html>
