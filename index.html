@@ -3,182 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>L Platform | مستقبل الفن</title>
+    <title>L Platform | Premium Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --accent: #00b4d8;
-            --accent-glow: rgba(0, 180, 216, 0.3);
-            --bg: #050505;
-            --surface: #121212;
-            --text-main: #ffffff;
-            --text-dim: #a0a0a0;
+            --background: #020817; /* لون خلفية Shadcn الشهير */
+            --foreground: #ffffff;
+            --card: #020817;
+            --card-foreground: #ffffff;
+            --primary: #00b4d8;
+            --secondary: #1e293b;
+            --muted: #94a3b8;
+            --border: #1e293b;
         }
 
         body {
-            font-family: 'Segoe UI', Roboto, sans-serif;
-            background-color: var(--bg);
-            color: var(--text-main);
+            background-color: var(--background);
+            color: var(--foreground);
+            font-family: 'Cairo', sans-serif;
             margin: 0;
-            overflow-x: hidden;
+            line-height: 1.6;
         }
 
-        /* نافبار شفاف وفخم */
+        /* Navbar بلمسة Shadcn */
         nav {
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 10%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 8%;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(10px);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid #222;
+            background: rgba(2, 8, 23, 0.8);
+            backdrop-filter: blur(8px);
+            position: sticky; top: 0; z-index: 50;
         }
 
-        .logo { font-size: 26px; font-weight: 900; color: var(--text-main); text-decoration: none; }
-        .logo span { color: var(--accent); text-shadow: 0 0 15px var(--accent-glow); }
+        .logo { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.05rem; }
+        .logo span { color: var(--primary); }
 
-        /* التقسيمة الحديثة - Bento Grid */
-        .hero-grid {
+        /* Bento Grid المحسنة */
+        .container {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: auto;
-            gap: 20px;
-            padding: 40px 8%;
-            max-width: 1400px;
-            margin: 0 auto;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 1.5rem;
+            padding: 3rem 10%;
         }
 
-        .grid-item {
-            background: var(--surface);
-            border-radius: 20px;
-            overflow: hidden;
-            position: relative;
-            border: 1px solid #222;
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        .shadcn-card {
+            grid-column: span 4;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            transition: all 0.2s ease;
+            display: flex; flex-direction: column;
+            justify-content: space-between;
         }
 
-        .grid-item:hover {
-            transform: translateY(-10px) scale(1.02);
-            border-color: var(--accent);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+        .shadcn-card:hover { border-color: var(--primary); background: #030a1c; }
+
+        .featured { grid-column: span 8; background: linear-gradient(to bottom right, #020817, #0f172a); }
+
+        .badge {
+            background: var(--secondary);
+            color: var(--primary);
+            padding: 0.2rem 0.6rem;
+            border-radius: 0.3rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            width: fit-content;
         }
 
-        /* الخبر الرئيسي الكبير */
-        .main-feat { grid-column: span 2; grid-row: span 2; min-height: 450px; }
-        
-        .item-img {
-            width: 100%; height: 100%;
-            background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.9) 100%), #1a1a1a;
-            position: relative;
-        }
+        h1, h2, h3 { font-weight: 700; letter-spacing: -0.02rem; margin-top: 1rem; }
 
-        .item-content {
-            position: absolute;
-            bottom: 0; padding: 25px;
-            width: 100%; box-sizing: border-box;
-        }
+        .description { color: var(--muted); font-size: 0.95rem; margin-bottom: 1.5rem; }
 
-        .category {
-            background: var(--accent);
-            color: #000;
-            padding: 4px 12px;
-            border-radius: 6px;
-            font-size: 12px;
-            font-weight: bold;
-            display: inline-block;
-            margin-bottom: 10px;
-        }
-
-        h2, h3 { margin: 10px 0; line-height: 1.4; }
-        .main-feat h2 { font-size: 30px; }
-
-        /* Sidebar - الفورم بشكل عصري */
-        .sidebar-item { grid-column: span 1; grid-row: span 2; background: linear-gradient(145deg, #121212, #1a1a1a); padding: 25px; }
-        
-        .modern-form input, .modern-form textarea {
+        /* Buttons & Inputs (Shadcn Style) */
+        .input-group { margin-bottom: 1rem; }
+        input, textarea {
             width: 100%;
-            background: #000;
-            border: 1px solid #333;
+            background: transparent;
+            border: 1px solid var(--border);
+            border-radius: 0.4rem;
+            padding: 0.6rem;
             color: white;
-            padding: 12px;
-            margin-bottom: 15px;
-            border-radius: 10px;
-            box-sizing: border-box;
+            font-family: inherit;
         }
 
-        .submit-btn {
-            width: 100%;
-            background: var(--accent);
-            color: #000;
+        input:focus { outline: 1px solid var(--primary); border-color: var(--primary); }
+
+        .btn-primary {
+            background: var(--foreground);
+            color: var(--background);
+            padding: 0.6rem 1rem;
+            border-radius: 0.4rem;
+            font-weight: 600;
             border: none;
-            padding: 15px;
-            border-radius: 10px;
-            font-weight: 900;
             cursor: pointer;
-            transition: 0.3s;
+            width: 100%;
+            transition: opacity 0.2s;
         }
 
-        .submit-btn:hover { background: #fff; box-shadow: 0 0 20px var(--accent); }
+        .btn-primary:hover { opacity: 0.9; }
 
-        @media (max-width: 900px) {
-            .hero-grid { grid-template-columns: 1fr; }
-            .main-feat { grid-column: span 1; grid-row: span 1; }
-            .sidebar-item { grid-column: span 1; }
+        @media (max-width: 1024px) {
+            .shadcn-card, .featured { grid-column: span 12; }
         }
     </style>
 </head>
 <body>
 
 <nav>
-    <a href="#" class="logo">L <span>PLATFORM</span></a>
-    <div style="color: var(--text-dim); font-size: 14px;">بوابة التريند 2026</div>
+    <div class="logo">L <span>PLATFORM</span></div>
+    <div style="font-size: 0.8rem; color: var(--muted);">v2.0 Premium Content</div>
 </nav>
 
-<div class="hero-grid">
-    <div class="grid-item main-feat">
-        <div class="item-img" style="background-image: url('https://via.placeholder.com/800x600/111/00b4d8?text=L+Platform+News'); background-size: cover;">
-            <div class="item-content">
-                <span class="category">أخبار حصرية</span>
-                <h2>تغطية شاملة: كيف غير الذكاء الاصطناعي وجه الفن في 2026؟</h2>
-                <p style="color: var(--text-dim);">استكشف أحدث التقنيات التي يستخدمها المبدعون الآن...</p>
-                <a href="posts/joy-awards-2025.html" style="color: var(--accent); text-decoration: none; font-weight: bold;">اقرأ المزيد ←</a>
-            </div>
+<div class="container">
+    <div class="shadcn-card featured">
+        <div>
+            <span class="badge">أخبار حصرية</span>
+            <h1>مستقبل الفن الرقمي 2026: هل سيعوض الذكاء الاصطناعي المبدعين؟</h1>
+            <p class="description">دراسة تحليلية لعمق التأثير التقني على الساحة الفنية العربية والعالمية في ظل التطور المتسارع لموديلات التوليد الصوري.</p>
+        </div>
+        <a href="#" style="color: var(--primary); text-decoration: none; font-size: 0.9rem;">قراءة المقال بالكامل →</a>
+    </div>
+
+    <div class="shadcn-card">
+        <div>
+            <h3>انشر عملك</h3>
+            <p class="description">كن جزءاً من مجتمعنا الإبداعي.</p>
+            <form name="contact" method="POST" data-netlify="true">
+                <div class="input-group"><input type="text" name="name" placeholder="الاسم"></div>
+                <div class="input-group"><input type="email" name="email" placeholder="البريد"></div>
+                <div class="input-group"><textarea name="message" placeholder="وصف العمل" rows="3"></textarea></div>
+                <button type="submit" class="btn-primary">إرسال للمراجعة</button>
+            </form>
         </div>
     </div>
 
-    <div class="grid-item">
-        <div class="item-img">
-            <div class="item-content">
-                <span class="category">تريند</span>
-                <h3>Joy Awards: لقطات لم تذع</h3>
-                <a href="posts/joy-awards-2025.html" style="color: var(--accent); text-decoration: none; font-size: 14px;">التفاصيل ←</a>
-            </div>
-        </div>
+    <div class="shadcn-card">
+        <span class="badge">تريند</span>
+        <h3>Joy Awards 2025: خلف الكواليس</h3>
+        <p class="description">أهم اللحظات التي لم تظهر على شاشات التلفزيون.</p>
+        <a href="#" style="color: var(--primary); text-decoration: none;">التفاصيل ←</a>
     </div>
 
-    <div class="grid-item sidebar-item">
-        <h3 style="color: var(--accent); margin-top: 0;">كن جزءاً من المنصة</h3>
-        <p style="font-size: 14px; color: var(--text-dim);">انشر عملك الفني ليصل لآلاف المتابعين.</p>
-        <form name="contact" method="POST" data-netlify="true" class="modern-form">
-            <input type="text" name="name" placeholder="الاسم الكامل" required>
-            <input type="email" name="email" placeholder="بريدك الإلكتروني" required>
-            <textarea name="message" placeholder="وصف عملك الفني..." rows="4"></textarea>
-            <button type="submit" class="submit-btn">إرسال العمل للنشر</button>
-        </form>
+    <div class="shadcn-card">
+        <span class="badge">حوارات</span>
+        <h3>لقاء مع نجم الشهر</h3>
+        <p class="description">حصرياً لمنصة L: رحلة الصعود من الصفر إلى العالمية.</p>
+        <a href="#" style="color: var(--primary); text-decoration: none;">قريباً ←</a>
     </div>
 
-    <div class="grid-item">
-        <div class="item-img">
-            <div class="item-content">
-                <span class="category">حوارات</span>
-                <h3>لقاء مع نجم الشهر</h3>
-                <a href="#" style="color: var(--accent); text-decoration: none; font-size: 14px;">قريباً ←</a>
-            </div>
-        </div>
+    <div class="shadcn-card">
+        <span class="badge">تقنية</span>
+        <h3>أدوات المبدعين الجديدة</h3>
+        <p class="description">تعرف على أفضل 5 تطبيقات للرسم الرقمي هذا العام.</p>
+        <a href="#" style="color: var(--primary); text-decoration: none;">اقرأ المزيد ←</a>
     </div>
-
 </div>
 
 </body>
