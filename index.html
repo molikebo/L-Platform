@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>L Platform | Premium Experience</title>
+    <title>L Platform | Premium Hub</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -13,7 +13,6 @@
         }
 
         body {
-            /* إضافة الخلفية الصورية الفخمة */
             background: linear-gradient(rgba(2, 8, 23, 0.85), rgba(2, 8, 23, 0.85)), 
                         url('http://googleusercontent.com/image_collection/image_retrieval/1676694782069381926_0');
             background-size: cover;
@@ -37,113 +36,115 @@
         }
 
         .nav-links { display: flex; gap: 2rem; list-style: none; margin: 0; padding: 0; }
-        .nav-links a { color: #94a3b8; text-decoration: none; font-size: 0.95rem; transition: 0.4s; position: relative; }
+        .nav-links a { color: #94a3b8; text-decoration: none; font-size: 0.95rem; transition: 0.4s; }
         .nav-links a:hover { color: var(--primary); }
-        .nav-links a::after { content: ''; width: 0; height: 2px; background: var(--primary); position: absolute; bottom: -5px; right: 0; transition: 0.4s; }
-        .nav-links a:hover::after { width: 100%; }
 
         .logo { font-size: 1.6rem; font-weight: 800; text-decoration: none; color: white; }
         .logo span { color: var(--primary); }
 
-        /* شبكة Bento محسنة */
         .container {
             display: grid; grid-template-columns: repeat(12, 1fr);
-            gap: 2rem; padding: 3rem 10%;
+            gap: 1.5rem; padding: 2.5rem 10%;
         }
 
-        /* كروت Shadcn مع تأثيرات Hover */
         .shadcn-card {
             background: var(--card-bg);
             border: 1px solid var(--border);
-            border-radius: 1.2rem;
+            border-radius: 1rem;
             backdrop-filter: blur(10px);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative; overflow: hidden;
-            display: flex; flex-direction: column; justify-content: space-between;
+            padding: 1.5rem;
+            transition: 0.4s;
         }
 
-        .shadcn-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary);
-            box-shadow: 0 0 30px rgba(0, 180, 216, 0.2);
-            background: rgba(2, 8, 23, 0.85);
+        .shadcn-card:hover { border-color: var(--primary); transform: translateY(-5px); }
+
+        /* الأقسام الجديدة */
+        .featured-main { grid-column: span 8; }
+        .sidebar-trending { grid-column: span 4; }
+        .artist-grid { grid-column: span 12; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 1rem; }
+
+        .artist-link {
+            background: rgba(255,255,255,0.05);
+            padding: 1rem;
+            border-radius: 0.8rem;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            border: 1px solid transparent;
+            transition: 0.3s;
         }
 
-        /* تنسيق الفورم المصغر */
-        .small-form-card { grid-column: span 4; padding: 1.5rem; }
-        .small-form-card h3 { font-size: 1.3rem; margin-top: 0; }
-        .small-form-card p { font-size: 0.85rem; margin-bottom: 1rem; color: #94a3b8; }
-        
-        .modern-form input, .modern-form textarea {
-            width: 100%; background: rgba(255,255,255,0.05);
-            border: 1px solid var(--border); padding: 0.7rem;
-            border-radius: 0.5rem; color: white; margin-bottom: 0.8rem;
-            box-sizing: border-box; transition: 0.3s; font-size: 0.9rem;
-        }
-        .modern-form input:focus { border-color: var(--primary); outline: none; background: rgba(255,255,255,0.1); }
-        .submit-btn {
-            width: 100%; background: var(--primary); color: #000;
-            padding: 0.8rem; border-radius: 0.6rem; border: none;
-            font-weight: 700; cursor: pointer; transition: 0.3s;
-        }
-        .submit-btn:hover { background: #fff; transform: scale(1.05); box-shadow: 0 0 20px var(--primary); }
+        .artist-link:hover { border-color: var(--primary); background: rgba(0, 180, 216, 0.1); }
 
-        /* تنسيق الإعلان الرئيسي */
-        .ad-example-card { grid-column: span 8; padding: 0; } /* padding 0 لإعطاء الصورة مساحة */
-        .ad-content {
-            position: absolute; bottom: 0; padding: 2.5rem;
-            width: 100%; box-sizing: border-box;
-            background: linear-gradient(180deg, transparent 0%, rgba(2, 8, 23, 0.9) 100%);
+        .badge { background: var(--primary); color: #000; padding: 2px 8px; border-radius: 4px; font-size: 0.7rem; font-weight: bold; }
+
+        .btn-action {
+            background: var(--primary); color: black; border: none; padding: 10px 20px;
+            border-radius: 8px; font-weight: bold; cursor: pointer; text-decoration: none; display: inline-block;
         }
-        .category-tag {
-            background: rgba(0, 180, 216, 0.2); color: var(--primary);
-            padding: 4px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: bold;
-        }
-        .ad-example-card h1 { font-size: 2.5rem; margin: 15px 0; line-height: 1.2; }
-        .ad-example-card p { color: #94a3b8; font-size: 1.1rem; margin-bottom: 20px; }
 
         @media (max-width: 900px) {
-            .nav-links { display: none; }
-            .small-form-card, .ad-example-card { grid-column: span 12; }
-            .ad-example-card h1 { font-size: 2rem; }
+            .featured-main, .sidebar-trending { grid-column: span 12; }
+            .artist-grid { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
 <body>
 
 <nav>
-    <a href="#" class="logo">L <span>PLATFORM</span></a>
+    <a href="index.html" class="logo">L <span>PLATFORM</span></a>
     <ul class="nav-links">
         <li><a href="index.html">الرئيسية</a></li>
-        <li><a href="#">التريندات</a></li>
-        <li><a href="#">أخبار المشاهير</a></li>
-        <li><a href="#">اتصل بنا</a></li>
+        <li><a href="#trends">التريندات</a></li>
+        <li><a href="#artists">الفنانين</a></li>
     </ul>
 </nav>
 
 <div class="container">
-    <div class="shadcn-card small-form-card">
-        <div>
-            <h3>انشر موهبتك 🚀</h3>
-            <p>أرسل לנו تفاصيل إبداعك وسنتواصل معك فوراً للنشر.</p>
-            <form name="contact" method="POST" data-netlify="true" class="modern-form">
-                <input type="text" name="name" placeholder="الاسم الكامل" required>
-                <input type="email" name="email" placeholder="البريد الإلكتروني" required>
-                <textarea name="message" placeholder="صف موهبتك أو عملك..." rows="2" required></textarea>
-                <button type="submit" class="submit-btn">إرسال الطلب</button>
-            </form>
-        </div>
+    <div class="shadcn-card featured-main">
+        <span class="badge">الأكثر قراءة</span>
+        <h1>تغطية حفل Joy Awards 2025</h1>
+        <p style="color: #94a3b8;">شاهد قائمة الفائزين الكاملة وأهم اللقطات الحصرية من قلب الرياض.</p>
+        <a href="trends/joy-awards.html" class="btn-action">اقرأ التقرير كامل ←</a>
     </div>
 
-    <div class="shadcn-card ad-example-card">
-        <div style="width: 100%; height: 100%; background-image: url('https://via.placeholder.com/800x600/111/00b4d8?text=Joy+Awards+Dummy+Ad'); background-size: cover; background-position: center; border-radius: 1.2rem;">
-            <div class="ad-content">
-                <span class="category-tag">تغطية خاصة</span>
-                <h1>تغطية حصرية: كواليس وفائزي حفل Joy Awards 2025</h1>
-                <p>تعرف على القائمة الكاملة للفائزين وأهم اللقطات التي لم تذع على الشاشة...</p>
-                <button class="submit-btn" style="width: auto; padding: 0.8rem 2rem;">شاهد التغطية الآن</button>
-            </div>
-        </div>
+    <div class="shadcn-card sidebar-trending" id="trends">
+        <h3>أهم التريندات 🔥</h3>
+        <ul style="list-style: none; padding: 0; margin-top: 1rem;">
+            <li style="margin-bottom: 1rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem;">
+                <a href="trends/trend-1.html" style="color: white; text-decoration: none; font-size: 0.9rem;">#موسم_الرياض_2026</a>
+            </li>
+            <li style="margin-bottom: 1rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem;">
+                <a href="trends/trend-2.html" style="color: white; text-decoration: none; font-size: 0.9rem;">#آية_سماحة_تخطف_الأنظار</a>
+            </li>
+            <li style="margin-bottom: 1rem; border-bottom: 1px solid var(--border); padding-bottom: 0.5rem;">
+                <a href="trends/trend-3.html" style="color: white; text-decoration: none; font-size: 0.9rem;">#جديد_ويجز_2026</a>
+            </li>
+        </ul>
+    </div>
+
+    <div id="artists" style="grid-column: span 12; margin-top: 2rem;">
+        <h2 style="border-right: 4px solid var(--primary); padding-right: 15px;">ملفات الفنانين ⭐</h2>
+    </div>
+
+    <div class="artist-grid">
+        <a href="artists/aya-samaha.html" class="artist-link">آية سماحة</a>
+        <a href="artists/wegz.html" class="artist-link">ويجز</a>
+        <a href="artists/ahmed-dash.html" class="artist-link">أحمد داش</a>
+        <a href="artists/tamer-hosny.html" class="artist-link">تامر حسني</a>
+        <a href="artists/artist-5.html" class="artist-link">محمد رمضان</a>
+        <a href="artists/artist-6.html" class="artist-link">ياسمين صبري</a>
+        <a href="artists/artist-7.html" class="artist-link">عمرو دياب</a>
+        <a href="artists/artist-8.html" class="artist-link">هنا الزاهد</a>
+    </div>
+
+    <div class="shadcn-card" style="grid-column: span 12; margin-top: 3rem; text-align: center;">
+        <h3>انشر عملك في المنصة L 🚀</h3>
+        <p style="color: #94a3b8;">كن جزءاً من مجتمع المبدعين، أرسل لنا وسنتواصل معك فوراً.</p>
+        <form name="contact" method="POST" data-netlify="true" style="max-width: 500px; margin: auto;">
+            <input type="text" name="name" placeholder="الاسم الكامل" style="width: 100%; padding: 10px; margin-bottom: 10px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 5px; color: white;">
+            <button type="submit" class="btn-action" style="width: 100%;">إرسال الطلب</button>
+        </form>
     </div>
 </div>
 
