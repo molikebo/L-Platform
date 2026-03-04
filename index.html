@@ -3,103 +3,110 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>L Platform | Premium Experience</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <title>L Platform | The Future of Art</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --background: #020817;
-            --foreground: #ffffff;
             --primary: #00b4d8;
             --border: rgba(255, 255, 255, 0.1);
-            --card-bg: rgba(15, 23, 42, 0.6); /* شفافية بسيطة لزوم الأنيميشن */
+            --card-bg: rgba(2, 8, 23, 0.7);
         }
 
-        /* خلفية أنيميشن هادئة */
         body {
-            background: linear-gradient(-45deg, #020817, #0f172a, #010409, #020817);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-            color: var(--foreground);
+            /* إضافة الصورة كخلفية ثابتة */
+            background: linear-gradient(rgba(2, 8, 23, 0.85), rgba(2, 8, 23, 0.85)), 
+                        url('http://googleusercontent.com/image_collection/image_retrieval/1676694782069381926_0');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* لجعل الخلفية ثابتة أثناء التمرير */
+            color: #ffffff;
             font-family: 'Cairo', sans-serif;
             margin: 0;
             min-height: 100vh;
         }
 
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* القائمة العلوية (Menu) */
         nav {
             border-bottom: 1px solid var(--border);
-            padding: 0.8rem 10%;
+            padding: 1rem 10%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(2, 8, 23, 0.7);
-            backdrop-filter: blur(12px);
+            background: rgba(2, 8, 23, 0.9);
+            backdrop-filter: blur(15px);
             position: sticky; top: 0; z-index: 1000;
         }
 
         .nav-links { display: flex; gap: 2rem; list-style: none; margin: 0; padding: 0; }
         .nav-links a { 
-            color: #94a3b8; text-decoration: none; font-size: 0.9rem; 
-            font-weight: 500; transition: 0.3s; 
+            color: #94a3b8; text-decoration: none; font-size: 0.95rem; 
+            transition: 0.4s; position: relative;
         }
         .nav-links a:hover { color: var(--primary); }
+        /* خط صغير تحت اللينك عند الوقوف عليه */
+        .nav-links a::after {
+            content: ''; width: 0; height: 2px; background: var(--primary);
+            position: absolute; bottom: -5px; right: 0; transition: 0.4s;
+        }
+        .nav-links a:hover::after { width: 100%; }
 
-        .logo { font-size: 1.4rem; font-weight: 800; color: white; text-decoration: none; }
+        .logo { font-size: 1.6rem; font-weight: 800; text-decoration: none; color: white; }
         .logo span { color: var(--primary); }
 
-        /* Bento Grid */
         .container {
-            display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            gap: 1.5rem;
-            padding: 2.5rem 10%;
+            display: grid; grid-template-columns: repeat(12, 1fr);
+            gap: 2rem; padding: 3rem 10%;
         }
 
+        /* كروت Shadcn مع تأثيرات Hover */
         .shadcn-card {
             grid-column: span 4;
             background: var(--card-bg);
             border: 1px solid var(--border);
-            border-radius: 1rem;
-            padding: 1.5rem;
+            border-radius: 1.2rem;
+            padding: 2rem;
             backdrop-filter: blur(10px);
-            transition: transform 0.3s ease, border-color 0.3s ease;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative; overflow: hidden;
         }
 
-        .shadcn-card:hover { 
-            transform: translateY(-5px); 
+        .shadcn-card:hover {
+            transform: translateY(-10px);
             border-color: var(--primary);
-            box-shadow: 0 10px 30px rgba(0, 180, 216, 0.1);
+            box-shadow: 0 0 30px rgba(0, 180, 216, 0.2);
+            background: rgba(2, 8, 23, 0.85);
         }
 
         .featured { grid-column: span 8; }
 
+        .category-tag {
+            background: rgba(0, 180, 216, 0.2);
+            color: var(--primary);
+            padding: 4px 12px; border-radius: 6px;
+            font-size: 0.75rem; font-weight: bold;
+        }
+
         .btn-primary {
-            background: var(--primary);
-            color: #000;
-            padding: 0.7rem;
-            border-radius: 0.5rem;
-            border: none;
-            width: 100%;
-            font-weight: 700;
-            cursor: pointer;
-            margin-top: 1rem;
+            background: var(--primary); color: #000;
+            padding: 0.8rem 1.5rem; border-radius: 0.6rem;
+            border: none; font-weight: 700; cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn-primary:hover { 
+            background: #fff; transform: scale(1.05); 
+            box-shadow: 0 0 20px var(--primary);
         }
 
         input, textarea {
-            width: 100%; background: rgba(0,0,0,0.3);
+            width: 100%; background: rgba(255,255,255,0.05);
             border: 1px solid var(--border);
-            padding: 0.7rem; border-radius: 0.4rem; color: white;
-            margin-bottom: 0.8rem; box-sizing: border-box;
+            padding: 0.8rem; border-radius: 0.5rem; color: white;
+            margin-bottom: 1rem; box-sizing: border-box;
+            transition: 0.3s;
         }
+        input:focus { border-color: var(--primary); outline: none; background: rgba(255,255,255,0.1); }
 
-        @media (max-width: 768px) {
-            .nav-links { display: none; } /* يختفي في الموبايل لتبسيطه حالياً */
+        @media (max-width: 900px) {
+            .nav-links { display: none; }
             .shadcn-card, .featured { grid-column: span 12; }
         }
     </style>
@@ -110,26 +117,28 @@
     <a href="#" class="logo">L <span>PLATFORM</span></a>
     <ul class="nav-links">
         <li><a href="index.html">الرئيسية</a></li>
-        <li><a href="#">التريند</a></li>
-        <li><a href="#">أخبار الفن</a></li>
-        <li><a href="#">عن المنصة</a></li>
+        <li><a href="#">التريندات</a></li>
+        <li><a href="#">أخبار المشاهير</a></li>
+        <li><a href="#">اتصل بنا</a></li>
     </ul>
 </nav>
 
 <div class="container">
     <div class="shadcn-card featured">
-        <h1 style="color: var(--primary);">مستقبل المنصة L في 2026</h1>
-        <p style="color: #cbd5e1; font-size: 1.1rem;">أهلاً بكم في النسخة المطورة من منصتنا. نحن هنا لنجمع بين الفن والتكنولوجيا في مكان واحد.</p>
-        <button class="btn-primary" style="width: auto; padding: 0.7rem 2rem;">اكتشف المزيد</button>
+        <span class="category-tag">تغطية خاصة</span>
+        <h1 style="font-size: 2.5rem; margin-top: 15px;">انطلاقة عصر جديد في المنصة L</h1>
+        <p style="color: #94a3b8; font-size: 1.1rem;">نحن لا ننشر الأخبار فقط، نحن نصنع التجربة. استمتع بأحدث تصميمات واجهة المستخدم المستوحاة من Shadcn UI.</p>
+        <button class="btn-primary">استكشف التريندات الآن</button>
     </div>
 
     <div class="shadcn-card">
-        <h3>انشر عملك 🚀</h3>
+        <h3>انشر موهبتك 🚀</h3>
+        <p style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 20px;">دع العالم يرى إبداعك، أرسل لنا وسنتواصل معك.</p>
         <form name="contact" method="POST" data-netlify="true">
-            <input type="text" name="name" placeholder="الاسم الكامل">
-            <input type="email" name="email" placeholder="البريد الإلكتروني">
-            <textarea name="message" placeholder="ماذا تريد أن تنشر؟" rows="3"></textarea>
-            <button type="submit" class="btn-primary">إرسال الآن</button>
+            <input type="text" name="name" placeholder="الاسم الكامل" required>
+            <input type="email" name="email" placeholder="البريد الإلكتروني" required>
+            <textarea name="message" placeholder="صف موهبتك أو عملك..." rows="3" required></textarea>
+            <button type="submit" class="btn-primary" style="width: 100%;">إرسال الطلب</button>
         </form>
     </div>
 </div>
