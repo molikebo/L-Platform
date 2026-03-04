@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ملف الفنان | L Platform</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary: #00b4d8; --bg: #020817; --card: rgba(255,255,255,0.05); }
+        body { background: var(--bg); color: white; font-family: 'Cairo', sans-serif; margin: 0; }
+        .hero-artist { height: 400px; background: linear-gradient(to bottom, transparent, var(--bg)), url('https://via.placeholder.com/1200x600'); background-size: cover; display: flex; align-items: flex-end; padding: 50px 10%; }
+        .artist-info { max-width: 800px; margin: -50px auto 50px; padding: 30px; background: var(--card); backdrop-filter: blur(20px); border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); }
+        h1 { color: var(--primary); font-size: 3rem; margin: 0; }
+        .bio { line-height: 1.8; color: #94a3b8; font-size: 1.1rem; }
+        .back-home { display: inline-block; margin-top: 20px; color: var(--primary); text-decoration: none; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="hero-artist">
+        <h1>اسم الفنان هنا</h1>
+    </div>
+    <div class="artist-info">
+        <span style="background: var(--primary); color: black; padding: 5px 15px; border-radius: 5px; font-weight: bold;">بروفايل فني</span>
+        <p class="bio">هنا نكتب قصة نجاح الفنان، بداياته، وأهم المحطات في مسيرته الفنية. يمكنك إضافة تفاصيل عن الجوائز والأعمال القادمة.</p>
+        <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.1); margin: 20px 0;">
+        <h3>أهم الأعمال</h3>
+        <ul>
+            <li>عمل فني 1 (2025)</li>
+            <li>عمل فني 2 (2024)</li>
+        </ul>
+        <a href="../index.html" class="back-home">← العودة للمنصة</a>
+    </div>
+</body>
+</html>
