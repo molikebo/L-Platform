@@ -3,109 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>L Platform | Premium Edition</title>
+    <title>L Platform | Premium Experience</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&family=Inter:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --background: #020817; /* لون خلفية Shadcn الشهير */
+            --background: #020817;
             --foreground: #ffffff;
-            --card: #020817;
-            --card-foreground: #ffffff;
             --primary: #00b4d8;
-            --secondary: #1e293b;
-            --muted: #94a3b8;
-            --border: #1e293b;
+            --border: rgba(255, 255, 255, 0.1);
+            --card-bg: rgba(15, 23, 42, 0.6); /* شفافية بسيطة لزوم الأنيميشن */
         }
 
+        /* خلفية أنيميشن هادئة */
         body {
-            background-color: var(--background);
+            background: linear-gradient(-45deg, #020817, #0f172a, #010409, #020817);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
             color: var(--foreground);
             font-family: 'Cairo', sans-serif;
             margin: 0;
-            line-height: 1.6;
+            min-height: 100vh;
         }
 
-        /* Navbar بلمسة Shadcn */
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* القائمة العلوية (Menu) */
         nav {
             border-bottom: 1px solid var(--border);
-            padding: 1rem 10%;
+            padding: 0.8rem 10%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(2, 8, 23, 0.8);
-            backdrop-filter: blur(8px);
-            position: sticky; top: 0; z-index: 50;
+            background: rgba(2, 8, 23, 0.7);
+            backdrop-filter: blur(12px);
+            position: sticky; top: 0; z-index: 1000;
         }
 
-        .logo { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.05rem; }
+        .nav-links { display: flex; gap: 2rem; list-style: none; margin: 0; padding: 0; }
+        .nav-links a { 
+            color: #94a3b8; text-decoration: none; font-size: 0.9rem; 
+            font-weight: 500; transition: 0.3s; 
+        }
+        .nav-links a:hover { color: var(--primary); }
+
+        .logo { font-size: 1.4rem; font-weight: 800; color: white; text-decoration: none; }
         .logo span { color: var(--primary); }
 
-        /* Bento Grid المحسنة */
+        /* Bento Grid */
         .container {
             display: grid;
             grid-template-columns: repeat(12, 1fr);
             gap: 1.5rem;
-            padding: 3rem 10%;
+            padding: 2.5rem 10%;
         }
 
         .shadcn-card {
             grid-column: span 4;
-            background: var(--card);
+            background: var(--card-bg);
             border: 1px solid var(--border);
-            border-radius: 0.75rem;
+            border-radius: 1rem;
             padding: 1.5rem;
-            transition: all 0.2s ease;
-            display: flex; flex-direction: column;
-            justify-content: space-between;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, border-color 0.3s ease;
         }
 
-        .shadcn-card:hover { border-color: var(--primary); background: #030a1c; }
-
-        .featured { grid-column: span 8; background: linear-gradient(to bottom right, #020817, #0f172a); }
-
-        .badge {
-            background: var(--secondary);
-            color: var(--primary);
-            padding: 0.2rem 0.6rem;
-            border-radius: 0.3rem;
-            font-size: 0.75rem;
-            font-weight: 600;
-            width: fit-content;
+        .shadcn-card:hover { 
+            transform: translateY(-5px); 
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(0, 180, 216, 0.1);
         }
 
-        h1, h2, h3 { font-weight: 700; letter-spacing: -0.02rem; margin-top: 1rem; }
-
-        .description { color: var(--muted); font-size: 0.95rem; margin-bottom: 1.5rem; }
-
-        /* Buttons & Inputs (Shadcn Style) */
-        .input-group { margin-bottom: 1rem; }
-        input, textarea {
-            width: 100%;
-            background: transparent;
-            border: 1px solid var(--border);
-            border-radius: 0.4rem;
-            padding: 0.6rem;
-            color: white;
-            font-family: inherit;
-        }
-
-        input:focus { outline: 1px solid var(--primary); border-color: var(--primary); }
+        .featured { grid-column: span 8; }
 
         .btn-primary {
-            background: var(--foreground);
-            color: var(--background);
-            padding: 0.6rem 1rem;
-            border-radius: 0.4rem;
-            font-weight: 600;
+            background: var(--primary);
+            color: #000;
+            padding: 0.7rem;
+            border-radius: 0.5rem;
             border: none;
-            cursor: pointer;
             width: 100%;
-            transition: opacity 0.2s;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 1rem;
         }
 
-        .btn-primary:hover { opacity: 0.9; }
+        input, textarea {
+            width: 100%; background: rgba(0,0,0,0.3);
+            border: 1px solid var(--border);
+            padding: 0.7rem; border-radius: 0.4rem; color: white;
+            margin-bottom: 0.8rem; box-sizing: border-box;
+        }
 
-        @media (max-width: 1024px) {
+        @media (max-width: 768px) {
+            .nav-links { display: none; } /* يختفي في الموبايل لتبسيطه حالياً */
             .shadcn-card, .featured { grid-column: span 12; }
         }
     </style>
@@ -113,52 +107,30 @@
 <body>
 
 <nav>
-    <div class="logo">L <span>PLATFORM</span></div>
-    <div style="font-size: 0.8rem; color: var(--muted);">v2.0 Premium Content</div>
+    <a href="#" class="logo">L <span>PLATFORM</span></a>
+    <ul class="nav-links">
+        <li><a href="index.html">الرئيسية</a></li>
+        <li><a href="#">التريند</a></li>
+        <li><a href="#">أخبار الفن</a></li>
+        <li><a href="#">عن المنصة</a></li>
+    </ul>
 </nav>
 
 <div class="container">
     <div class="shadcn-card featured">
-        <div>
-            <span class="badge">أخبار حصرية</span>
-            <h1>مستقبل الفن الرقمي 2026: هل سيعوض الذكاء الاصطناعي المبدعين؟</h1>
-            <p class="description">دراسة تحليلية لعمق التأثير التقني على الساحة الفنية العربية والعالمية في ظل التطور المتسارع لموديلات التوليد الصوري.</p>
-        </div>
-        <a href="#" style="color: var(--primary); text-decoration: none; font-size: 0.9rem;">قراءة المقال بالكامل →</a>
+        <h1 style="color: var(--primary);">مستقبل المنصة L في 2026</h1>
+        <p style="color: #cbd5e1; font-size: 1.1rem;">أهلاً بكم في النسخة المطورة من منصتنا. نحن هنا لنجمع بين الفن والتكنولوجيا في مكان واحد.</p>
+        <button class="btn-primary" style="width: auto; padding: 0.7rem 2rem;">اكتشف المزيد</button>
     </div>
 
     <div class="shadcn-card">
-        <div>
-            <h3>انشر عملك</h3>
-            <p class="description">كن جزءاً من مجتمعنا الإبداعي.</p>
-            <form name="contact" method="POST" data-netlify="true">
-                <div class="input-group"><input type="text" name="name" placeholder="الاسم"></div>
-                <div class="input-group"><input type="email" name="email" placeholder="البريد"></div>
-                <div class="input-group"><textarea name="message" placeholder="وصف العمل" rows="3"></textarea></div>
-                <button type="submit" class="btn-primary">إرسال للمراجعة</button>
-            </form>
-        </div>
-    </div>
-
-    <div class="shadcn-card">
-        <span class="badge">تريند</span>
-        <h3>Joy Awards 2025: خلف الكواليس</h3>
-        <p class="description">أهم اللحظات التي لم تظهر على شاشات التلفزيون.</p>
-        <a href="#" style="color: var(--primary); text-decoration: none;">التفاصيل ←</a>
-    </div>
-
-    <div class="shadcn-card">
-        <span class="badge">حوارات</span>
-        <h3>لقاء مع نجم الشهر</h3>
-        <p class="description">حصرياً لمنصة L: رحلة الصعود من الصفر إلى العالمية.</p>
-        <a href="#" style="color: var(--primary); text-decoration: none;">قريباً ←</a>
-    </div>
-
-    <div class="shadcn-card">
-        <span class="badge">تقنية</span>
-        <h3>أدوات المبدعين الجديدة</h3>
-        <p class="description">تعرف على أفضل 5 تطبيقات للرسم الرقمي هذا العام.</p>
-        <a href="#" style="color: var(--primary); text-decoration: none;">اقرأ المزيد ←</a>
+        <h3>انشر عملك 🚀</h3>
+        <form name="contact" method="POST" data-netlify="true">
+            <input type="text" name="name" placeholder="الاسم الكامل">
+            <input type="email" name="email" placeholder="البريد الإلكتروني">
+            <textarea name="message" placeholder="ماذا تريد أن تنشر؟" rows="3"></textarea>
+            <button type="submit" class="btn-primary">إرسال الآن</button>
+        </form>
     </div>
 </div>
 
