@@ -4,17 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>L Platform | Premium Hub</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary: #00b4d8;
-            --border: rgba(255, 255, 255, 0.1);
-            --card-bg: rgba(2, 8, 23, 0.7);
-        }
-
+        :root { --primary: #00b4d8; --border: rgba(255, 255, 255, 0.1); }
+        
         body {
+            /* العودة للخلفية الصورية المفضلة لديك */
             background: linear-gradient(rgba(2, 8, 23, 0.85), rgba(2, 8, 23, 0.85)), 
-                        url('http://googleusercontent.com/image_collection/image_retrieval/1676694782069381926_0');
+                        url('https://images.unsplash.com/photo-1514525253361-bee8a48790c3?q=80&w=2000'); /* صورة فخمة ثابتة */
             background-size: cover; background-position: center; background-attachment: fixed;
             color: #ffffff; font-family: 'Cairo', sans-serif; margin: 0;
         }
@@ -22,50 +19,38 @@
         nav {
             border-bottom: 1px solid var(--border);
             padding: 1rem 10%; display: flex; justify-content: space-between; align-items: center;
-            background: rgba(2, 8, 23, 0.9); backdrop-filter: blur(15px);
-            position: sticky; top: 0; z-index: 1000;
+            background: rgba(2, 8, 23, 0.9); backdrop-filter: blur(15px); position: sticky; top: 0; z-index: 1000;
         }
 
         .logo { font-size: 1.6rem; font-weight: 800; text-decoration: none; color: white; }
         .logo span { color: var(--primary); }
 
-        /* خانة البحث الجديدة */
-        .search-container {
-            position: relative; width: 300px;
+        /* البحث الذكي */
+        .search-box { position: relative; }
+        .search-box input {
+            padding: 10px 20px; border-radius: 20px; border: 1px solid var(--border);
+            background: rgba(255,255,255,0.05); color: white; outline: none; width: 250px;
         }
-        .search-container input {
-            width: 100%; padding: 8px 35px 8px 15px;
-            background: rgba(255,255,255,0.05); border: 1px solid var(--border);
-            border-radius: 20px; color: white; outline: none; transition: 0.3s;
-        }
-        .search-container input:focus { border-color: var(--primary); background: rgba(255,255,255,0.1); }
+        .search-box input:focus { border-color: var(--primary); }
 
-        .container {
-            display: grid; grid-template-columns: repeat(12, 1fr);
-            gap: 1.5rem; padding: 2.5rem 10%;
-        }
+        .container { display: grid; grid-template-columns: repeat(12, 1fr); gap: 2rem; padding: 3rem 10%; }
 
         .shadcn-card {
-            background: var(--card-bg); border: 1px solid var(--border);
-            border-radius: 1rem; backdrop-filter: blur(10px); padding: 1.5rem; transition: 0.4s;
+            background: rgba(2, 8, 23, 0.7); border: 1px solid var(--border);
+            border-radius: 1.2rem; padding: 1.5rem; backdrop-filter: blur(10px); transition: 0.4s;
         }
         .shadcn-card:hover { border-color: var(--primary); transform: translateY(-5px); }
 
-        .featured-main { grid-column: span 8; }
-        .sidebar-trending { grid-column: span 4; }
-        .artist-grid { grid-column: span 12; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
-
-        .artist-link {
-            background: rgba(255,255,255,0.05); padding: 1rem; border-radius: 0.8rem;
-            text-align: center; text-decoration: none; color: white; border: 1px solid transparent; transition: 0.3s;
+        /* تنسيق صور الفنانين */
+        .artist-grid { grid-column: span 12; display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.5rem; }
+        .artist-card { text-align: center; text-decoration: none; color: white; }
+        .artist-img { 
+            width: 150px; height: 150px; border-radius: 50%; object-fit: cover; 
+            border: 3px solid var(--border); transition: 0.3s; margin-bottom: 10px;
         }
-        .artist-link:hover { border-color: var(--primary); background: rgba(0, 180, 216, 0.1); }
+        .artist-card:hover .artist-img { border-color: var(--primary); transform: scale(1.05); }
 
-        @media (max-width: 900px) {
-            .search-container { width: 150px; }
-            .featured-main, .sidebar-trending { grid-column: span 12; }
-            .artist-grid { grid-template-columns: repeat(2, 1fr); }
-        }
+        @media (max-width: 768px) { .container { grid-template-columns: 1fr; } .search-box { display: none; } }
     </style>
 </head>
 <body>
@@ -73,41 +58,46 @@
 <nav>
     <a href="index.html" class="logo">L <span>PLATFORM</span></a>
     
-    <div class="search-container">
-        <input type="text" placeholder="ابحث عن فنان أو تريند...">
+    <div class="search-box">
+        <input type="text" id="searchInput" placeholder="ابحث باسم الفنان..." onkeypress="handleSearch(event)">
     </div>
-
-    <ul style="display: flex; gap: 1.5rem; list-style: none; margin: 0; padding: 0;">
-        <li><a href="index.html" style="color: var(--primary); text-decoration: none;">الرئيسية</a></li>
-    </ul>
 </nav>
 
 <div class="container">
-    <div class="shadcn-card featured-main">
-        <h1>أهلاً بك في منصة L</h1>
-        <p style="color: #94a3b8;">استكشف عالم الفن والتريند بأسلوب عصري.</p>
-    </div>
-
-    <div class="shadcn-card sidebar-trending">
-        <h3>أهم التريندات 🔥</h3>
-        <ul style="list-style: none; padding: 0;">
-            <li style="margin-bottom: 10px;">
-                <a href="trends/joy-awards-2025.html" style="color: white; text-decoration: none;">#Joy_Awards_2025</a>
-            </li>
-        </ul>
-    </div>
-
-    <div style="grid-column: span 12; margin-top: 2rem;">
-        <h2>ملفات الفنانين ⭐</h2>
+    <div class="shadcn-card" style="grid-column: span 12;">
+        <h1>بوابة الفنانين والتريندات 2026 ⭐</h1>
+        <p>استكشف ملفات الفنانين وآخر أخبار المهرجانات.</p>
     </div>
 
     <div class="artist-grid">
-        <a href="artists/aya-samaha.html" class="artist-link">آية سماحة</a>
-        <a href="artists/wegz.html" class="artist-link">ويجز</a>
-        <a href="artists/ahmed-dash.html" class="artist-link">أحمد داش</a>
-        <a href="artists/tamer-hosny.html" class="artist-link">تامر حسني</a>
+        <a href="artists/aya-samaha.html" class="artist-card">
+            <img src="https://via.placeholder.com/150?text=Aya+Samaha" alt="آية سماحة" class="artist-img">
+            <div>آية سماحة</div>
+        </a>
+
+        <a href="artists/wegz.html" class="artist-card">
+            <img src="https://via.placeholder.com/150?text=Wegz" alt="ويجز" class="artist-img">
+            <div>ويجز</div>
+        </a>
+
+        <a href="artists/ahmed-dash.html" class="artist-card">
+            <img src="https://via.placeholder.com/150?text=Ahmed+Dash" alt="أحمد داش" class="artist-img">
+            <div>أحمد داش</div>
+        </a>
     </div>
 </div>
+
+<script>
+    function handleSearch(event) {
+        if (event.key === "Enter") {
+            let query = document.getElementById("searchInput").value.toLowerCase().trim();
+            if (query === "ويجز") window.location.href = "artists/wegz.html";
+            else if (query === "آية سماحة") window.location.href = "artists/aya-samaha.html";
+            else if (query === "أحمد داش") window.location.href = "artists/ahmed-dash.html";
+            else alert("عذراً، هذا الفنان غير مسجل حالياً.");
+        }
+    }
+</script>
 
 </body>
 </html>
