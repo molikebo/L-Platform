@@ -3,91 +3,182 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>L Platform | المنصة - بوابة الفن والتريند</title>
+    <title>L Platform | مستقبل الفن</title>
     <style>
-        :root { --accent: #00b4d8; --bg: #0a0b10; --card: #161b22; --text: #f0f6fc; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: var(--bg); color: var(--text); margin: 0; }
-        header { background: #000; padding: 20px 5%; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--accent); position: sticky; top: 0; z-index: 100; }
-        .logo { font-size: 28px; font-weight: 900; letter-spacing: 1px; }
-        .logo span { color: var(--accent); }
-        nav a { color: #8b949e; text-decoration: none; margin-right: 20px; font-weight: bold; transition: 0.3s; }
-        nav a:hover { color: var(--accent); }
+        :root {
+            --accent: #00b4d8;
+            --accent-glow: rgba(0, 180, 216, 0.3);
+            --bg: #050505;
+            --surface: #121212;
+            --text-main: #ffffff;
+            --text-dim: #a0a0a0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        /* نافبار شفاف وفخم */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #222;
+        }
+
+        .logo { font-size: 26px; font-weight: 900; color: var(--text-main); text-decoration: none; }
+        .logo span { color: var(--accent); text-shadow: 0 0 15px var(--accent-glow); }
+
+        /* التقسيمة الحديثة - Bento Grid */
+        .hero-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: auto;
+            gap: 20px;
+            padding: 40px 8%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .grid-item {
+            background: var(--surface);
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid #222;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .grid-item:hover {
+            transform: translateY(-10px) scale(1.02);
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+        }
+
+        /* الخبر الرئيسي الكبير */
+        .main-feat { grid-column: span 2; grid-row: span 2; min-height: 450px; }
         
-        .hero { padding: 60px 5%; text-align: center; background: radial-gradient(circle at center, #1a1d23 0%, #0a0b10 100%); border-bottom: 1px solid #30363d; }
-        .hero h1 { font-size: 48px; margin-bottom: 10px; }
-        .hero p { color: #8b949e; font-size: 20px; }
+        .item-img {
+            width: 100%; height: 100%;
+            background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.9) 100%), #1a1a1a;
+            position: relative;
+        }
 
-        .container { display: grid; grid-template-columns: 3fr 1fr; gap: 30px; padding: 40px 5%; }
+        .item-content {
+            position: absolute;
+            bottom: 0; padding: 25px;
+            width: 100%; box-sizing: border-box;
+        }
+
+        .category {
+            background: var(--accent);
+            color: #000;
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        h2, h3 { margin: 10px 0; line-height: 1.4; }
+        .main-feat h2 { font-size: 30px; }
+
+        /* Sidebar - الفورم بشكل عصري */
+        .sidebar-item { grid-column: span 1; grid-row: span 2; background: linear-gradient(145deg, #121212, #1a1a1a); padding: 25px; }
         
-        .news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
-        .card { background: var(--card); border-radius: 12px; border: 1px solid #30363d; overflow: hidden; transition: 0.3s; }
-        .card:hover { transform: translateY(-5px); border-color: var(--accent); }
-        .card-img { width: 100%; height: 180px; background: #21262d; display: flex; align-items: center; justify-content: center; font-size: 50px; }
-        .card-body { padding: 20px; }
-        .card-tag { color: var(--accent); font-size: 12px; font-weight: bold; text-transform: uppercase; }
-        .card h3 { margin: 10px 0; font-size: 20px; }
-        .card a { color: var(--accent); text-decoration: none; font-weight: bold; font-size: 14px; }
+        .modern-form input, .modern-form textarea {
+            width: 100%;
+            background: #000;
+            border: 1px solid #333;
+            color: white;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            box-sizing: border-box;
+        }
 
-        .sidebar { display: flex; flex-direction: column; gap: 20px; }
-        .ad-box { background: var(--card); border: 1px dashed var(--accent); padding: 30px; border-radius: 12px; text-align: center; }
-        .ad-box h4 { margin: 0 0 10px; color: var(--accent); }
-        .btn-ad { background: var(--accent); color: #000; border: none; padding: 10px; width: 100%; border-radius: 6px; font-weight: bold; cursor: pointer; }
+        .submit-btn {
+            width: 100%;
+            background: var(--accent);
+            color: #000;
+            border: none;
+            padding: 15px;
+            border-radius: 10px;
+            font-weight: 900;
+            cursor: pointer;
+            transition: 0.3s;
+        }
 
-        @media (max-width: 768px) { .container { grid-template-columns: 1fr; } .hero h1 { font-size: 32px; } }
+        .submit-btn:hover { background: #fff; box-shadow: 0 0 20px var(--accent); }
+
+        @media (max-width: 900px) {
+            .hero-grid { grid-template-columns: 1fr; }
+            .main-feat { grid-column: span 1; grid-row: span 1; }
+            .sidebar-item { grid-column: span 1; }
+        }
     </style>
 </head>
 <body>
 
-<header>
-    <div class="logo">L <span>PLATFORM</span></div>
-    <nav>
-        <a href="index.html">الرئيسية</a>
-        <a href="#">التريند</a>
-        <a href="#">أعلن معنا</a>
-    </nav>
-</header>
+<nav>
+    <a href="#" class="logo">L <span>PLATFORM</span></a>
+    <div style="color: var(--text-dim); font-size: 14px;">بوابة التريند 2026</div>
+</nav>
 
-<section class="hero">
-    <h1>المنصة <span>L</span></h1>
-    <p>وجهتكم الأولى لأخبار النجوم وأقوى التريندات الفنية</p>
-</section>
-
-<div class="container">
-    <main class="news-grid">
-        <article class="card">
-            <div class="card-img">🏆</div>
-            <div class="card-body">
-                <span class="card-tag">#تريند_السعودية</span>
-                <h3>ليلة الأساطير.. تغطية حفل Joy Awards 2025</h3>
-                <p style="color: #8b949e; font-size: 14px;">شاهد أهم اللقطات وقائمة الفائزين في أضخم حفل عربي بالرياض...</p>
-                <a href="posts/joy-awards-2025.html">اقرأ التفاصيل ←</a>
+<div class="hero-grid">
+    <div class="grid-item main-feat">
+        <div class="item-img" style="background-image: url('https://via.placeholder.com/800x600/111/00b4d8?text=L+Platform+News'); background-size: cover;">
+            <div class="item-content">
+                <span class="category">أخبار حصرية</span>
+                <h2>تغطية شاملة: كيف غير الذكاء الاصطناعي وجه الفن في 2026؟</h2>
+                <p style="color: var(--text-dim);">استكشف أحدث التقنيات التي يستخدمها المبدعون الآن...</p>
+                <a href="posts/joy-awards-2025.html" style="color: var(--accent); text-decoration: none; font-weight: bold;">اقرأ المزيد ←</a>
             </div>
-        </article>
+        </div>
+    </div>
 
-        <article class="card">
-            <div class="card-img">⭐</div>
-            <div class="card-body">
-                <span class="card-tag">#نجمة_الجيل</span>
-                <h3>آية سماحة تخطف الأنظار بجلسة تصوير جديدة</h3>
-                <p style="color: #8b949e; font-size: 14px;">تصدرت الفنانة آية سماحة محركات البحث بعد ظهورها الأخير بإطلالة عصرية...</p>
-                <a href="posts/aya-samaha.html">مشاهدة الصور ←</a>
+    <div class="grid-item">
+        <div class="item-img">
+            <div class="item-content">
+                <span class="category">تريند</span>
+                <h3>Joy Awards: لقطات لم تذع</h3>
+                <a href="posts/joy-awards-2025.html" style="color: var(--accent); text-decoration: none; font-size: 14px;">التفاصيل ←</a>
             </div>
-        </article>
-    </main>
+        </div>
+    </div>
 
-    <aside class="sidebar">
-    <div class="ad-box">
-        <h4>انشر عملك في المنصة</h4>
-        <p style="font-size: 13px; color: #8b949e; margin-bottom: 15px;">أرسل تفاصيل عملك الفني وسنقوم بنشره فوراً</p>
-        
-        <form name="contact" method="POST" data-netlify="true">
-            <input type="text" name="name" placeholder="اسمك" required style="width: 100%; padding: 8px; margin-bottom: 10px; background: #000; border: 1px solid #333; color: white; border-radius: 4px;">
-            <input type="email" name="email" placeholder="إيميلك أو رقمك" required style="width: 100%; padding: 8px; margin-bottom: 10px; background: #000; border: 1px solid #333; color: white; border-radius: 4px;">
-            <textarea name="message" placeholder="اكتب نبذة عن عملك الفني هنا..." rows="4" style="width: 100%; padding: 8px; margin-bottom: 10px; background: #000; border: 1px solid #333; color: white; border-radius: 4px;"></textarea>
-            <button type="submit" class="btn-ad" style="background: var(--accent); color: #000; border: none; padding: 10px; width: 100%; border-radius: 6px; font-weight: bold; cursor: pointer;">إرسال للنشر 🚀</button>
+    <div class="grid-item sidebar-item">
+        <h3 style="color: var(--accent); margin-top: 0;">كن جزءاً من المنصة</h3>
+        <p style="font-size: 14px; color: var(--text-dim);">انشر عملك الفني ليصل لآلاف المتابعين.</p>
+        <form name="contact" method="POST" data-netlify="true" class="modern-form">
+            <input type="text" name="name" placeholder="الاسم الكامل" required>
+            <input type="email" name="email" placeholder="بريدك الإلكتروني" required>
+            <textarea name="message" placeholder="وصف عملك الفني..." rows="4"></textarea>
+            <button type="submit" class="submit-btn">إرسال العمل للنشر</button>
         </form>
     </div>
-</aside>
+
+    <div class="grid-item">
+        <div class="item-img">
+            <div class="item-content">
+                <span class="category">حوارات</span>
+                <h3>لقاء مع نجم الشهر</h3>
+                <a href="#" style="color: var(--accent); text-decoration: none; font-size: 14px;">قريباً ←</a>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 </body>
