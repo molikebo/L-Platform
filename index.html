@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>L Platform | The Future of Art</title>
+    <title>L Platform | Premium Experience</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -13,12 +13,12 @@
         }
 
         body {
-            /* إضافة الصورة كخلفية ثابتة */
+            /* إضافة الخلفية الصورية الفخمة */
             background: linear-gradient(rgba(2, 8, 23, 0.85), rgba(2, 8, 23, 0.85)), 
                         url('http://googleusercontent.com/image_collection/image_retrieval/1676694782069381926_0');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed; /* لجعل الخلفية ثابتة أثناء التمرير */
+            background-attachment: fixed;
             color: #ffffff;
             font-family: 'Cairo', sans-serif;
             margin: 0;
@@ -37,21 +37,15 @@
         }
 
         .nav-links { display: flex; gap: 2rem; list-style: none; margin: 0; padding: 0; }
-        .nav-links a { 
-            color: #94a3b8; text-decoration: none; font-size: 0.95rem; 
-            transition: 0.4s; position: relative;
-        }
+        .nav-links a { color: #94a3b8; text-decoration: none; font-size: 0.95rem; transition: 0.4s; position: relative; }
         .nav-links a:hover { color: var(--primary); }
-        /* خط صغير تحت اللينك عند الوقوف عليه */
-        .nav-links a::after {
-            content: ''; width: 0; height: 2px; background: var(--primary);
-            position: absolute; bottom: -5px; right: 0; transition: 0.4s;
-        }
+        .nav-links a::after { content: ''; width: 0; height: 2px; background: var(--primary); position: absolute; bottom: -5px; right: 0; transition: 0.4s; }
         .nav-links a:hover::after { width: 100%; }
 
         .logo { font-size: 1.6rem; font-weight: 800; text-decoration: none; color: white; }
         .logo span { color: var(--primary); }
 
+        /* شبكة Bento محسنة */
         .container {
             display: grid; grid-template-columns: repeat(12, 1fr);
             gap: 2rem; padding: 3rem 10%;
@@ -59,14 +53,13 @@
 
         /* كروت Shadcn مع تأثيرات Hover */
         .shadcn-card {
-            grid-column: span 4;
             background: var(--card-bg);
             border: 1px solid var(--border);
             border-radius: 1.2rem;
-            padding: 2rem;
             backdrop-filter: blur(10px);
             transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative; overflow: hidden;
+            display: flex; flex-direction: column; justify-content: space-between;
         }
 
         .shadcn-card:hover {
@@ -76,38 +69,43 @@
             background: rgba(2, 8, 23, 0.85);
         }
 
-        .featured { grid-column: span 8; }
-
-        .category-tag {
-            background: rgba(0, 180, 216, 0.2);
-            color: var(--primary);
-            padding: 4px 12px; border-radius: 6px;
-            font-size: 0.75rem; font-weight: bold;
-        }
-
-        .btn-primary {
-            background: var(--primary); color: #000;
-            padding: 0.8rem 1.5rem; border-radius: 0.6rem;
-            border: none; font-weight: 700; cursor: pointer;
-            transition: 0.3s;
-        }
-        .btn-primary:hover { 
-            background: #fff; transform: scale(1.05); 
-            box-shadow: 0 0 20px var(--primary);
-        }
-
-        input, textarea {
+        /* تنسيق الفورم المصغر */
+        .small-form-card { grid-column: span 4; padding: 1.5rem; }
+        .small-form-card h3 { font-size: 1.3rem; margin-top: 0; }
+        .small-form-card p { font-size: 0.85rem; margin-bottom: 1rem; color: #94a3b8; }
+        
+        .modern-form input, .modern-form textarea {
             width: 100%; background: rgba(255,255,255,0.05);
-            border: 1px solid var(--border);
-            padding: 0.8rem; border-radius: 0.5rem; color: white;
-            margin-bottom: 1rem; box-sizing: border-box;
-            transition: 0.3s;
+            border: 1px solid var(--border); padding: 0.7rem;
+            border-radius: 0.5rem; color: white; margin-bottom: 0.8rem;
+            box-sizing: border-box; transition: 0.3s; font-size: 0.9rem;
         }
-        input:focus { border-color: var(--primary); outline: none; background: rgba(255,255,255,0.1); }
+        .modern-form input:focus { border-color: var(--primary); outline: none; background: rgba(255,255,255,0.1); }
+        .submit-btn {
+            width: 100%; background: var(--primary); color: #000;
+            padding: 0.8rem; border-radius: 0.6rem; border: none;
+            font-weight: 700; cursor: pointer; transition: 0.3s;
+        }
+        .submit-btn:hover { background: #fff; transform: scale(1.05); box-shadow: 0 0 20px var(--primary); }
+
+        /* تنسيق الإعلان الرئيسي */
+        .ad-example-card { grid-column: span 8; padding: 0; } /* padding 0 لإعطاء الصورة مساحة */
+        .ad-content {
+            position: absolute; bottom: 0; padding: 2.5rem;
+            width: 100%; box-sizing: border-box;
+            background: linear-gradient(180deg, transparent 0%, rgba(2, 8, 23, 0.9) 100%);
+        }
+        .category-tag {
+            background: rgba(0, 180, 216, 0.2); color: var(--primary);
+            padding: 4px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: bold;
+        }
+        .ad-example-card h1 { font-size: 2.5rem; margin: 15px 0; line-height: 1.2; }
+        .ad-example-card p { color: #94a3b8; font-size: 1.1rem; margin-bottom: 20px; }
 
         @media (max-width: 900px) {
             .nav-links { display: none; }
-            .shadcn-card, .featured { grid-column: span 12; }
+            .small-form-card, .ad-example-card { grid-column: span 12; }
+            .ad-example-card h1 { font-size: 2rem; }
         }
     </style>
 </head>
@@ -124,22 +122,28 @@
 </nav>
 
 <div class="container">
-    <div class="shadcn-card featured">
-        <span class="category-tag">تغطية خاصة</span>
-        <h1 style="font-size: 2.5rem; margin-top: 15px;">انطلاقة عصر جديد في المنصة L</h1>
-        <p style="color: #94a3b8; font-size: 1.1rem;">نحن لا ننشر الأخبار فقط، نحن نصنع التجربة. استمتع بأحدث تصميمات واجهة المستخدم المستوحاة من Shadcn UI.</p>
-        <button class="btn-primary">استكشف التريندات الآن</button>
+    <div class="shadcn-card small-form-card">
+        <div>
+            <h3>انشر موهبتك 🚀</h3>
+            <p>أرسل לנו تفاصيل إبداعك وسنتواصل معك فوراً للنشر.</p>
+            <form name="contact" method="POST" data-netlify="true" class="modern-form">
+                <input type="text" name="name" placeholder="الاسم الكامل" required>
+                <input type="email" name="email" placeholder="البريد الإلكتروني" required>
+                <textarea name="message" placeholder="صف موهبتك أو عملك..." rows="2" required></textarea>
+                <button type="submit" class="submit-btn">إرسال الطلب</button>
+            </form>
+        </div>
     </div>
 
-    <div class="shadcn-card">
-        <h3>انشر موهبتك 🚀</h3>
-        <p style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 20px;">دع العالم يرى إبداعك، أرسل لنا وسنتواصل معك.</p>
-        <form name="contact" method="POST" data-netlify="true">
-            <input type="text" name="name" placeholder="الاسم الكامل" required>
-            <input type="email" name="email" placeholder="البريد الإلكتروني" required>
-            <textarea name="message" placeholder="صف موهبتك أو عملك..." rows="3" required></textarea>
-            <button type="submit" class="btn-primary" style="width: 100%;">إرسال الطلب</button>
-        </form>
+    <div class="shadcn-card ad-example-card">
+        <div style="width: 100%; height: 100%; background-image: url('https://via.placeholder.com/800x600/111/00b4d8?text=Joy+Awards+Dummy+Ad'); background-size: cover; background-position: center; border-radius: 1.2rem;">
+            <div class="ad-content">
+                <span class="category-tag">تغطية خاصة</span>
+                <h1>تغطية حصرية: كواليس وفائزي حفل Joy Awards 2025</h1>
+                <p>تعرف على القائمة الكاملة للفائزين وأهم اللقطات التي لم تذع على الشاشة...</p>
+                <button class="submit-btn" style="width: auto; padding: 0.8rem 2rem;">شاهد التغطية الآن</button>
+            </div>
+        </div>
     </div>
 </div>
 
