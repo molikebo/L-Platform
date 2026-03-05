@@ -76,12 +76,18 @@
     </main>
 
     <aside class="sidebar">
-        <div class="ad-box">
-            <h4>أعلن هنا</h4>
-            <p style="font-size: 13px; color: #8b949e;">روّج لعملك الفني أو شركتك في منصة L</p>
-            <button class="btn-ad">اطلب إعلانك الآن</button>
-        </div>
-    </aside>
+    <div class="ad-box">
+        <h4>انشر عملك في المنصة</h4>
+        <p style="font-size: 13px; color: #8b949e; margin-bottom: 15px;">أرسل تفاصيل عملك الفني وسنقوم بنشره فوراً</p>
+        
+        <form name="contact" method="POST" data-netlify="true">
+            <input type="text" name="name" placeholder="اسمك" required style="width: 100%; padding: 8px; margin-bottom: 10px; background: #000; border: 1px solid #333; color: white; border-radius: 4px;">
+            <input type="email" name="email" placeholder="إيميلك أو رقمك" required style="width: 100%; padding: 8px; margin-bottom: 10px; background: #000; border: 1px solid #333; color: white; border-radius: 4px;">
+            <textarea name="message" placeholder="اكتب نبذة عن عملك الفني هنا..." rows="4" style="width: 100%; padding: 8px; margin-bottom: 10px; background: #000; border: 1px solid #333; color: white; border-radius: 4px;"></textarea>
+            <button type="submit" class="btn-ad" style="background: var(--accent); color: #000; border: none; padding: 10px; width: 100%; border-radius: 6px; font-weight: bold; cursor: pointer;">إرسال للنشر 🚀</button>
+        </form>
+    </div>
+</aside>
 </div>
 
 </body>
